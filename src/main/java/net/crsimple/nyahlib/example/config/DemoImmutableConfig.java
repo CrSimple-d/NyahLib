@@ -1,8 +1,9 @@
 package net.crsimple.nyahlib.example.config;
 
 import com.google.gson.annotations.SerializedName;
-import net.crsimple.nyahlib.api.config.ConfigLoadingException;
+import net.crsimple.nyahlib.api.config.InvalidConfigException;
 import net.crsimple.nyahlib.api.config.Configuration;
+import net.crsimple.nyahlib.util.ConfigHelper;
 
 public class DemoImmutableConfig implements Configuration {
     @SerializedName("some_int")
@@ -17,9 +18,7 @@ public class DemoImmutableConfig implements Configuration {
     }
 
     @Override
-    public void checkConfig() throws ConfigLoadingException {
-        if (someInt < 0 || someInt > 2000) {
-            throw new ConfigLoadingException("some_int must be greater than 0 and less than 2000");
-        }
+    public void checkConfig() throws InvalidConfigException {
+        ConfigHelper.limit("some_int",someInt,0,3000);
     }
 }

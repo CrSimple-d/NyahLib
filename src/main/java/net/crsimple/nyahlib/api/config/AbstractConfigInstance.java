@@ -42,7 +42,7 @@ public abstract class AbstractConfigInstance<T extends Configuration> extends Co
         T instance = super.load();
         try {
             instance.checkConfig();
-        } catch (ConfigLoadingException e) {
+        } catch (InvalidConfigException e) {
             LibMain.LOGGER.error("Config {} is not valid: {}", getId(), e.getMessage());
             if (!instance.shouldLoadingInCaseException()) {
                 LibMain.LOGGER.warn("Using default configuration for {}", getId());
