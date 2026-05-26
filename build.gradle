@@ -98,3 +98,14 @@ publishing {
         // retrieving dependencies.
     }
 }
+
+sourceSets {
+    main {
+        java {
+            exclude("**/example/")
+        }
+        resources {
+            exclude("**/example/")
+        }
+    }
+}
